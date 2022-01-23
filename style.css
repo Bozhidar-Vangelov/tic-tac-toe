@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave&display=swap');
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(251, 255, 0, 1) 0%,
+    rgba(183, 255, 0, 1) 100%
+  );
+  font-family: 'Sedgwick Ave', cursive;
+  color: #a10000;
+}
+
+
