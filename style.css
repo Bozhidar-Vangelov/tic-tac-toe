@@ -48,20 +48,16 @@ header {
   border-top: none;
 }
 
-.cell:first-child,
-.cell:nth-child(4),
-.cell:nth-child(7) {
+.cell:nth-child(3n + 1) {
   border-left: none;
 }
 
 .cell:nth-child(7),
 .cell:nth-child(8),
-.cell:nth-child(9) {
+.cell:last-child {
   border-bottom: none;
 }
 
-.cell:nth-child(3),
-.cell:nth-child(6),
-.cell:nth-child(9) {
+.cell:nth-child(3n + 3) {
   border-right: none;
 }
