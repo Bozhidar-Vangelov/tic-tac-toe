@@ -19,4 +19,25 @@ body {
   color: #a10000;
 }
 
+header {
+  text-align: center;
+  font-size: 2em;
+}
 
+.board {
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  width: 600px;
+  height: 600px;
+  margin: 0 auto;
+}
+
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid #a10000;
+  border-radius: 2px;
+  font-weight: bold;
+  font-size: 4em;
+}
