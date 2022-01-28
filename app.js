@@ -2,7 +2,7 @@ const createPlayer = (name, marker) => {
   return { name, marker };
 };
 
-const createBoxes = () => {
+const createBox = () => {
   const boardElement = document.getElementById('board');
 
   const box = document.createElement('div');
@@ -17,7 +17,19 @@ const gameBoard = () => {
   for (let i = 0; i < 9; i++) {
     board.push('');
 
-    createBoxes();
+    createBox();
+  }
+
+  console.log(board);
+
+  const boxes = Array.from(document.getElementsByClassName('cell'));
+
+  boxes.forEach((box) => {
+    box.addEventListener('click', boxClickHandler, { once: true });
+  });
+
+  function boxClickHandler(e) {
+    console.log(e.target);
   }
 };
 
