@@ -20,27 +20,29 @@ const gameBoard = () => {
     createBox();
   }
 
-  console.log(board);
-
   const boxes = Array.from(document.getElementsByClassName('cell'));
-
-  boxes.forEach((box) => {
-    box.addEventListener('click', boxClickHandler, { once: true });
-  });
 
   let currentPlayer = game.firstPlayer;
 
-  function boxClickHandler(e) {
-    let cell = e.target;
+  boxes.forEach((box, i) => {
+    box.addEventListener(
+      'click',
+      (e) => {
+        let cell = e.target;
 
-    cell.textContent = currentPlayer.marker;
+        cell.textContent = currentPlayer.marker;
 
-    if (currentPlayer === game.firstPlayer) {
-      currentPlayer = game.secondPlayer;
-    } else {
-      currentPlayer = game.firstPlayer;
-    }
-  }
+        board[i] = currentPlayer.marker;
+
+        if (currentPlayer === game.firstPlayer) {
+          currentPlayer = game.secondPlayer;
+        } else {
+          currentPlayer = game.firstPlayer;
+        }
+      },
+      { once: true }
+    );
+  });
 };
 
 const game = (() => {
