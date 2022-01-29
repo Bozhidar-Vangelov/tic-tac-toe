@@ -12,7 +12,7 @@ body {
   background: linear-gradient(
     90deg,
     rgba(2, 0, 36, 1) 0%,
-    rgba(251, 255, 0, 1) 0%,
+    rgb(251, 255, 0) 0%,
     rgba(183, 255, 0, 1) 100%
   );
   font-family: 'Sedgwick Ave', cursive;
@@ -60,4 +60,29 @@ header {
 
 .cell:nth-child(3n + 3) {
   border-right: none;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 5rem;
+  flex-direction: column;
+}
+
+.restart {
+  font-size: 3rem;
+  background-color: #fbff00;
+  border: 1px solid black;
+  border-radius: 0.2em;
+  padding: 0.25em 0.5em;
+  cursor: pointer;
+  color: #a10000;
 }

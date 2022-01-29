@@ -21,29 +21,43 @@ const gameBoard = (() => {
   }
 
   const boxes = Array.from(document.getElementsByClassName('cell'));
+  const modal = document.getElementById('modal');
 
-  boxes.forEach((box, i) => {
-    box.addEventListener(
-      'click',
-      (e) => {
+  startGame();
+
+  function startGame() {
+    boxes.forEach((box, i) => {
+      box.addEventListener('click', playTurn, { once: true });
+
+      function playTurn(e) {
         let cell = e.target;
-
-        cell.textContent = game.currentPlayer.marker;
 
         board[i] = game.currentPlayer.marker;
 
-        console.log(game.isDraw());
+        cell.textContent = game.currentPlayer.marker;
 
         if (game.isWinner()) {
           console.log('Winner');
+          modal.style.display = 'flex';
         } else if (game.isDraw()) {
           console.log('Draw');
+          modal.style.display = 'flex';
         } else {
           game.nextPlayer();
         }
-      },
-      { once: true }
-    );
+      }
+    });
+  }
+
+  const restartButton = document.getElementById('restart');
+
+  restartButton.addEventListener('click', () => {
+    boxes.forEach((box, i) => {
+      box.textContent = '';
+      board[i] = '';
+    });
+    startGame();
+    modal.style.display = 'none';
   });
 
   return {
