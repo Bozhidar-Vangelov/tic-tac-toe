@@ -11,7 +11,7 @@ const createBox = () => {
   boardElement.appendChild(box);
 };
 
-const gameBoard = () => {
+const gameBoard = (() => {
   const board = [];
 
   for (let i = 0; i < 9; i++) {
@@ -22,37 +22,41 @@ const gameBoard = () => {
 
   const boxes = Array.from(document.getElementsByClassName('cell'));
 
-  let currentPlayer = game.firstPlayer;
-
   boxes.forEach((box, i) => {
     box.addEventListener(
       'click',
       (e) => {
         let cell = e.target;
 
-        cell.textContent = currentPlayer.marker;
+        cell.textContent = game.currentPlayer.marker;
 
-        board[i] = currentPlayer.marker;
+        board[i] = game.currentPlayer.marker;
 
-        if (currentPlayer === game.firstPlayer) {
-          currentPlayer = game.secondPlayer;
-        } else {
-          currentPlayer = game.firstPlayer;
-        }
+        game.nextPlayer();
       },
       { once: true }
     );
   });
-};
-
-const game = (() => {
-  let firstPlayer = createPlayer('Player 1', 'X');
-  let secondPlayer = createPlayer('Player 2', 'O');
 
   return {
-    firstPlayer,
-    secondPlayer,
+    board,
   };
 })();
 
-gameBoard();
+const game = (() => {
+  const firstPlayer = createPlayer('Player 1', 'X');
+  const secondPlayer = createPlayer('Player 2', 'O');
+
+  let currentPlayer = firstPlayer;
+
+  function nextPlayer() {
+    this.currentPlayer === firstPlayer
+      ? (this.currentPlayer = secondPlayer)
+      : (this.currentPlayer = firstPlayer);
+  }
+
+  return {
+    currentPlayer,
+    nextPlayer,
+  };
+})();
