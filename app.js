@@ -28,9 +28,29 @@ const gameBoard = () => {
     box.addEventListener('click', boxClickHandler, { once: true });
   });
 
+  let currentPlayer = game.firstPlayer;
+
   function boxClickHandler(e) {
-    console.log(e.target);
+    let cell = e.target;
+
+    cell.textContent = currentPlayer.marker;
+
+    if (currentPlayer === game.firstPlayer) {
+      currentPlayer = game.secondPlayer;
+    } else {
+      currentPlayer = game.firstPlayer;
+    }
   }
 };
+
+const game = (() => {
+  let firstPlayer = createPlayer('Player 1', 'X');
+  let secondPlayer = createPlayer('Player 2', 'O');
+
+  return {
+    firstPlayer,
+    secondPlayer,
+  };
+})();
 
 gameBoard();
