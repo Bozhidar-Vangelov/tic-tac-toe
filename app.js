@@ -32,8 +32,12 @@ const gameBoard = (() => {
 
         board[i] = game.currentPlayer.marker;
 
+        console.log(game.isDraw());
+
         if (game.isWinner()) {
           console.log('Winner');
+        } else if (game.isDraw()) {
+          console.log('Draw');
         } else {
           game.nextPlayer();
         }
@@ -78,9 +82,16 @@ const game = (() => {
     });
   }
 
+  function isDraw() {
+    return gameBoard.board.every((item) => {
+      return item !== '';
+    });
+  }
+
   return {
     currentPlayer,
     nextPlayer,
     isWinner,
+    isDraw,
   };
 })();
