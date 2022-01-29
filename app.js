@@ -32,9 +32,9 @@ const gameBoard = (() => {
       function playTurn(e) {
         let cell = e.target;
 
-        board[i] = game.currentPlayer.marker;
-
         cell.textContent = game.currentPlayer.marker;
+
+        board[i] = game.currentPlayer.marker;
 
         if (game.isWinner()) {
           console.log('Winner');
@@ -44,6 +44,7 @@ const gameBoard = (() => {
           modal.style.display = 'flex';
         } else {
           game.nextPlayer();
+          console.log(game.currentPlayer.marker);
         }
       }
     });
@@ -91,7 +92,7 @@ const game = (() => {
 
     return winningCombinations.some((combination) => {
       return combination.every((index) => {
-        return gameBoard.board[index] === currentPlayer.marker;
+        return gameBoard.board[index] === this.currentPlayer.marker;
       });
     });
   }
