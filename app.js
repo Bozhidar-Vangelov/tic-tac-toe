@@ -32,7 +32,11 @@ const gameBoard = (() => {
 
         board[i] = game.currentPlayer.marker;
 
-        game.nextPlayer();
+        if (game.isWinner()) {
+          console.log('Winner');
+        } else {
+          game.nextPlayer();
+        }
       },
       { once: true }
     );
@@ -55,8 +59,28 @@ const game = (() => {
       : (this.currentPlayer = firstPlayer);
   }
 
+  function isWinner() {
+    const winningCombinations = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+
+    return winningCombinations.some((combination) => {
+      return combination.every((index) => {
+        return gameBoard.board[index] === currentPlayer.marker;
+      });
+    });
+  }
+
   return {
     currentPlayer,
     nextPlayer,
+    isWinner,
   };
 })();
