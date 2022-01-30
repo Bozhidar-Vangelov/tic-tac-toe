@@ -22,11 +22,13 @@ const gameBoard = (() => {
 
   const boxes = Array.from(document.getElementsByClassName('cell'));
   const modal = document.getElementById('modal');
+  const modalText = document.getElementById('modalText');
 
   startGame();
 
   function startGame() {
     boxes.forEach((box, i) => {
+      box.removeEventListener('click', playTurn);
       box.addEventListener('click', playTurn, { once: true });
 
       function playTurn(e) {
@@ -37,14 +39,15 @@ const gameBoard = (() => {
         board[i] = game.currentPlayer.marker;
 
         if (game.isWinner()) {
-          console.log('Winner');
+          modalText.textContent = `${game.currentPlayer.marker} won the game!`;
           modal.style.display = 'flex';
+          return;
         } else if (game.isDraw()) {
-          console.log('Draw');
+          modalText.textContent = 'Draw';
           modal.style.display = 'flex';
+          return;
         } else {
           game.nextPlayer();
-          console.log(game.currentPlayer.marker);
         }
       }
     });
@@ -58,6 +61,7 @@ const gameBoard = (() => {
       board[i] = '';
     });
     startGame();
+    game.currentPlayer = game.firstPlayer;
     modal.style.display = 'none';
   });
 
@@ -104,6 +108,7 @@ const game = (() => {
   }
 
   return {
+    firstPlayer,
     currentPlayer,
     nextPlayer,
     isWinner,
