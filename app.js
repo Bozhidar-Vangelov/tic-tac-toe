@@ -49,7 +49,7 @@ const gameBoard = (() => {
     board[i] = game.currentPlayer.marker;
 
     if (game.isWinner()) {
-      modalText.textContent = `${game.currentPlayer.marker} won the game!`;
+      modalText.textContent = `${game.currentPlayer.marker}'s won the game!`;
       modal.style.display = 'flex';
     } else if (game.isDraw()) {
       modalText.textContent = 'Draw';
