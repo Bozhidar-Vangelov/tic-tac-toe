@@ -39,7 +39,6 @@ const gameBoard = (() => {
     let i = undefined;
 
     for (let j = 0; j < boardElement.children.length; j++) {
-      console.log(cell);
       if (cell === boardElement.children[j]) {
         i = j;
       }
@@ -49,21 +48,12 @@ const gameBoard = (() => {
 
     board[i] = game.currentPlayer.marker;
 
-    console.log(board);
-    console.log(game.currentPlayer, i + 1);
-
     if (game.isWinner()) {
       modalText.textContent = `${game.currentPlayer.marker} won the game!`;
       modal.style.display = 'flex';
-      console.log('Win');
-
-      return;
     } else if (game.isDraw()) {
       modalText.textContent = 'Draw';
       modal.style.display = 'flex';
-      console.log('Draw');
-
-      return;
     } else {
       game.nextPlayer();
     }
