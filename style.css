@@ -30,6 +30,7 @@ header {
   width: 600px;
   height: 600px;
   margin: 0 auto;
+  font-size: 5em;
 }
 
 .cell {
@@ -40,7 +41,6 @@ header {
   border: 3px solid #a10000;
   border-radius: 2px;
   font-weight: bold;
-  font-size: 4em;
 }
 
 .cell:first-child,
@@ -64,7 +64,7 @@ header {
 }
 
 .cell:hover {
-  background-color: rgb(173, 192, 0);
+  background-color: rgb(205, 224, 35);
 }
 
 .cell:first-child:hover,
@@ -102,6 +102,10 @@ header {
   flex-direction: column;
 }
 
+.modal-text {
+  text-align: center;
+}
+
 .restart {
   font-size: 3rem;
   font-family: 'Sedgwick Ave', cursive;
@@ -111,4 +115,30 @@ header {
   padding: 0.25em 0.5em;
   cursor: pointer;
   color: #a10000;
+}
+
+/* Media queries */
+
+@media only screen and (max-width: 768px) {
+  header {
+    font-size: 1.5em;
+  }
+
+  .board {
+    width: 400px;
+    height: 400px;
+    font-size: 3.5em;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  header {
+    font-size: 1em;
+  }
+
+  .board {
+    width: 300px;
+    height: 300px;
+    font-size: 2.5em;
+  }
 }
