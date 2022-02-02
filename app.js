@@ -27,30 +27,46 @@ const gameBoard = (() => {
   startGame();
 
   function startGame() {
-    boxes.forEach((box, i) => {
+    boxes.forEach((box) => {
       box.removeEventListener('click', playTurn);
       box.addEventListener('click', playTurn, { once: true });
-
-      function playTurn(e) {
-        let cell = e.target;
-
-        cell.textContent = game.currentPlayer.marker;
-
-        board[i] = game.currentPlayer.marker;
-
-        if (game.isWinner()) {
-          modalText.textContent = `${game.currentPlayer.marker} won the game!`;
-          modal.style.display = 'flex';
-          return;
-        } else if (game.isDraw()) {
-          modalText.textContent = 'Draw';
-          modal.style.display = 'flex';
-          return;
-        } else {
-          game.nextPlayer();
-        }
-      }
     });
+  }
+
+  function playTurn(e) {
+    let boardElement = e.target.parentElement;
+    let cell = e.target;
+    let i = undefined;
+
+    for (let j = 0; j < boardElement.children.length; j++) {
+      console.log(cell);
+      if (cell === boardElement.children[j]) {
+        i = j;
+      }
+    }
+
+    cell.textContent = game.currentPlayer.marker;
+
+    board[i] = game.currentPlayer.marker;
+
+    console.log(board);
+    console.log(game.currentPlayer, i + 1);
+
+    if (game.isWinner()) {
+      modalText.textContent = `${game.currentPlayer.marker} won the game!`;
+      modal.style.display = 'flex';
+      console.log('Win');
+
+      return;
+    } else if (game.isDraw()) {
+      modalText.textContent = 'Draw';
+      modal.style.display = 'flex';
+      console.log('Draw');
+
+      return;
+    } else {
+      game.nextPlayer();
+    }
   }
 
   const restartButton = document.getElementById('restart');
